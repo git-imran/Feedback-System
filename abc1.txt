@@ -1,1 +1,1 @@
-this file shows the fetch command
+we will use this file to demonstrate fetch command
