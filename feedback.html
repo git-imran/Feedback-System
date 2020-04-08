@@ -1,0 +1,263 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+ 
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/feedback.css' %}">
+        <center>
+        	 <h1><u>FACULTY EVALUATION</u></h1>
+	 	</center>
+<head>
+</head>
+	
+	
+    <body text = "800000" bgcolor = "#FFFFFF" onload="display()">
+    	<script type="text/javascript">
+			 function display() {
+				var msg= "{{ message }}"
+				if(msg=="")	{
+					alert("welcome  {{ username }} !!!")
+				}
+				else
+					alert(msg)
+		}
+	</script>
+
+	 
+	<div class="feedback_form">
+		<form action="logout/" method="POST">
+			<div class="button_logout" style="position: absolute; top:20px; left: 1200px; ">
+					<div style="position: absolute; top: 50px; color: #A52A2A">logout</div> 
+					<a href="logout/"><img src="{% static 'images/Logout.png' %}" width="30%" height="10%"></a>
+		    </div>
+		</form>
+		
+		<form action="submit_view/" method="POST"> {% csrf_token %}
+			<table>
+				<tr>
+				<td>
+					<div class="feedback_labels">
+					<div class="feedback_studentID">
+	 					Student ID:
+ 	 					<input type="text" name="stud_id" style="text-align: center;" value="{{ stud_id }}" readonly>
+ 	 				</div>
+	 				<div class="feedback_batch">
+			 			Branch:
+ 	 					<input type="text" name="feedback_Branch" style="text-align: center;" value=" {{ branch }}" readonly>
+ 	 				</div>
+	 				<div class="feedback_branch">
+				 		Division:
+	 		 			<input type="text" name="feedback_div" style="text-align: center;" value=" {{ division }}" readonly>
+	 		 		</div>
+	 		 	</div>
+			 	</td>
+			 	</tr>
+
+	 			<tr>
+			 	<td>
+			 	<div class="semester_div">	
+			 		<label>
+			 		Semester:
+	 				<select class="semester_label">
+	 					{% for sem in semester %}
+	 					<option>{{ sem }}</option>
+	 					{% endfor %}
+			 		</select>
+					</label>
+				</div>
+				<div class="faculty_name_div">
+					<label>
+    		    	Faculty Name:
+		 			<select name="faculty_name" id="type" class="faculty_name_label" required >
+							<option value="">select faculty </option>
+			 				{% for f in faculties %}
+		 					<option value= "{{ f }}">{{ f }}</option>
+		 				{% endfor %}
+	 				</select>
+					</label>
+				</div>	
+				<div class="subject_name_div">	
+			 		Subject Name:
+ 	 				<label>	<select name="subject_name" id="size" class="subject_label" required>
+ 	 					<option value="">select Subject</option>
+			 			{% for subject in subjects %}
+   		 	 				<option value="{{ subject }}"> {{ subject }} </option>
+   		 		 		{% endfor %}
+    		
+	 				</select>
+	 				</label>
+	 			</div>
+			 	</td>
+			 	</tr>
+			</div>	
+		    </table>     
+			
+			<center>	
+			<table width="85%" border = "5" bordercolor = "800000">
+		    		<br><p><b>STUDENTS FEEDBACK TO TEACHER</b></p>
+	      		<thead>	
+      			<tr><td width="=20"><b><center> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></b></td>
+	 				<td><b><center> Questions </center></b></td>
+
+					<td><b><center>Response</center></b></td>
+	 			</tr>      
+            	</thead>
+            	<tr>
+            	<td width="20"> <center>I</center></td>
+            	<td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The teacher cover the entire syllabus</td>
+            	<td>
+            		<input type = "radio" name = "Q. 1" value = "fair" required> Average  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            		<input type = "radio" name = "Q. 1" value = "good" required> Good  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            		<input type = "radio" name = "Q. 1" value = "excellent" required> Excellent
+            	</td>
+	    		</tr>
+	   
+            	<tr>
+            	<td width="20"> <center>II</center></td>
+            	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The teacher discusses topics in detail</td>
+            	<td>
+            		<input type = "radio" name = "Q. 2" value = "fair" required> Average   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            		<input type = "radio" name = "Q. 2" value = "good" required> Good   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            		<input type = "radio" name = "Q. 2" value = "excellent" required> Excellent
+            	</td>
+            	</tr>
+       
+	    		<tr>
+	    		<td width="20"> <center>III</center></td>
+            	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The teacher inspires us by his/her knowledge in the subject</td>
+	    		<td>
+	    			<input type = "radio" name = "Q. 3" value = "fair" required> Average &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 3" value = "good" required> Good &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 3" value = "excellent" required> Excellent
+	    		</td>
+	    		</tr>
+            	
+            	<tr>
+	   			<td width="20"> <center>IV</center></td>
+            	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The teacher provides guidance counselling in academic and non-academic matters in/out of class </td>
+	    		<td>
+	    			<input type = "radio" name = "Q. 4" value = "fair" required> Average &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 4" value = "good" required> Good &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 4" value = "excellent" required> Excellent
+	    		</td>
+	    		</tr>
+	
+				<tr>
+	    		<td width="20"> <center>V</center></td>
+            	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The teacher uses class time efficiently </td>
+	    		<td>
+	    			<input type = "radio" name = "Q. 5" value = "fair" required> Average &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 5" value = "good" required> Good &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 5" value = "excellent" required> Excellent
+	    		</td>
+	    		</tr>
+
+		        <tr>
+	    		<td width="20"> <center>VI</center></td>
+            	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teaching methodology </td>
+	    		<td>
+	    			<input type = "radio" name = "Q. 6" value = "fair" required> Average &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 6" value = "good" required> Good &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 6" value = "excellent" required> Excellent
+	    		</td>
+	    		</tr>
+	    
+	    		<tr>
+	    		<td width="20"> <center>VII</center></td>
+            	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Faculty communication skill </td>
+	    		<td>
+	    			<input type = "radio" name = "Q. 7" value = "fair" required> Average &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 7" value = "good" required> Good &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 7" value = "excellent" required> Excellent
+	    		</td>
+	    		</tr>
+
+		        <tr>
+	    		<td width="20"> <center>VIII</center></td>
+            	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teachers encourage us to think and explore new ideas </td>
+	    		<td>
+	    			<input type = "radio" name = "Q. 8" value = "fair" required> Average &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 8" value = "good" required> Good &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 8" value = "excellent" required> Excellent
+	    		</td>
+	    		</tr>
+            
+        		<tr>
+	    		<td width="20"> <center>IX</center></td>
+            	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teachers helps us to meet the goals and learning objective/outcome of course </td>
+	    		<td>
+	    			<input type = "radio" name = "Q. 9" value = "fair" required> Average &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 9" value = "good" required> Good &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type = "radio" name = "Q. 9" value = "excellent" required> Excellent
+	    		</td>
+	    		</tr>
+			</table>
+			
+			</br>
+        	<p><b>STUDENTS FEEDBACK TO THEMSELVES</b></p>
+	   	
+	   		<table width="85%" border = "5" bordercolor = "800000">
+        		<thead>	
+      			<tr><td width="20"><b><center> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></b></td>
+	 				<td><b><center> Questions </center></b></td>
+
+					<td><b><center>Response</center></b></td>
+	 			</tr>      
+            	</thead>
+            	
+	   			<tr>
+	   			<td width="20"><b><center> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></b></td>
+	   			<td width="63%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Level of effort you put into your course  </td>
+	   			<td>
+	   				<input type = "radio" name = "a" value = "fair" required> Average &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	   				<input type = "radio" name = "a" value = "good" required> Good &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	   				<input type = "radio" name = "a" value = "excellent" required> Excellent
+	   			</td>
+	   			</tr>
+           
+				<tr>
+				<td width="20"><b><center> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;II&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></b></td>	
+	   			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your level of knowledge at start of course </td>
+			   	<td>
+		   			<input type = "radio" name = "b" value = "fair" required> Average &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			   		<input type = "radio" name = "b" value = "good" required> Good &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			   		<input type = "radio" name = "b" value = "excellent" required> Excellent
+			   	</td>
+	   			</tr>
+           	
+				<tr>
+				<td width="10"><b><center> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;III&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></b></td>
+		   		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your level of knowledge at end of course </td>
+		   		<td>
+		   			<input type = "radio" name = "c" value = "fair" required> Average &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	   				<input type = "radio" name = "c" value = "good" required> Good &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	   				<input type = "radio" name = "c" value = "excellent" required> Excellent
+	   			</td>
+	   			</tr>
+       	    
+			</table>
+		
+       		</br>
+       		<div class="Submit_class">
+	    		<input class="Submit" type="submit" value="Submit">
+	    	</div>	
+           
+		</form>
+		</div>
+   		</center>
+
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/tilt/tilt.jquery.min.js' %}"></script>
+	<!--===============================================================================================-->
+	<script src="js/main.js"></script>  
+	
+
+	</body>
+</html>

@@ -1,0 +1,65 @@
+{% load static %}
+<html>
+   <head>
+      <title>Performance Measurement</title>
+      <script type = "text/javascript" src = "{% static 'jscript/loader.js' %}">
+      </script>
+      <link rel="stylesheet" href="{% static 'css/overall_faculty.css' %}">
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['corechart']});     
+      </script>
+   </head>
+   <body>
+      <br>
+      <center> 
+         <div  class="Panel_Heading" >
+               ADMIN PANEL
+               <br>
+         </div>
+        </center> 
+        <div class="container-login100-form-btn">          
+              <form action="back/">
+          
+                  <button class="login100-form-btn" style="position: absolute; top: -20px; left: 1070px">
+                   back
+                  </button>
+                </form>
+        </div>
+  
+
+        <div class="faculty_name" style="font-size: 20pt; position: absolute; top:70px; left: 100px"> 
+            <center>{{ subject }}  :  {{ faculty }}</center>
+        </div>                 
+
+      <div id = "container" style = "width: 90%; height: 75%; margin: 0 auto; position: absolute; top: 120px; left: 50px ">
+      </div> 
+
+        
+      <script language = "JavaScript">
+         function drawChart() {
+            // Define the chart to be drawn.
+            var aq1={{average_Q1}};
+            var data = google.visualization.arrayToDataTable([
+               ['Factor',                                            'Average',       'Good',         'Excellent'         ],
+               ['Syllabus Completion',                            {{average_Q1}},   {{good_Q1}},   {{excellent_Q1}}       ],
+               ['Detailed Explanation',                           {{average_Q2}},   {{good_Q2}},   {{excellent_Q2}}       ],
+               ['Inspiring Nature',                               {{average_Q3}},   {{good_Q3}},   {{excellent_Q3}}       ],
+               ['Guidance and Counselling',                       {{average_Q4}},   {{good_Q4}},   {{excellent_Q4}}       ],
+               ['Consumption of time allocated for the class',    {{average_Q5}},   {{good_Q5}},   {{excellent_Q5}}       ],
+               ['Teaching Methodology',                           {{average_Q6}},   {{good_Q6}},   {{excellent_Q6}}       ],
+               ['Communication Skills',                           {{average_Q7}},   {{good_Q7}},   {{excellent_Q7}}       ],
+               ['Ability to encourage',                           {{average_Q8}},   {{good_Q8}},   {{excellent_Q8}}       ],
+               ['Conveying objectives and outcomes',              {{average_Q9}},   {{good_Q9}},   {{excellent_Q9}}       ],
+            ]);
+
+
+            var options = {title: 'Detailed examination of faculty\'s performance', isStacked:true, colors:['#A52A2A','blue','yellow'], bar:{groupWidth: "40%"}};  
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.ColumnChart(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+      </script>
+   </body>
+</html>

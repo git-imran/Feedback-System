@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <title>Title Page</title>
+    <link rel="stylesheet" href="{% static 'css/overall_faculty.css' %}">
+     </head>
+  <body><br><br>
+    <center> 
+        <div  class="Panel_Heading" >
+          ADMIN PANEL
+        </div>
+        </center>                  
+          
+        <div class="container-login100-form-btn">
+          
+                <form action="back/">
+                   <button class="login100-form-btn" style="position: absolute; top: 170px; left: 420px">
+                   back
+                  </button>
+                </form>
+
+          <form action="../Performance/" method="POST">
+                <button class="login100-form-btn" style="position: absolute;  top: 170px; left: 570px">
+                    Next
+              </button>          <div style="text-align: center">
+          <select name="subject_name" id="type" class="faculty_name_label" required >
+              <center><option value="" style="text-align: center;"><center>Select Subject</center> </option>
+              {% for s in subjects %}
+                <option value= "{{ s }}">{{ s }}</option>
+              {% endfor %}
+              <input type="text" name="faculty_name" value= "{{ faculty }}" hidden>
+            </center>
+    
+  
+        </div>
+      </div>
+  </form>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="">
+	<head>
+    	<title>Overall Performance</title>
+    	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    	<script type="text/javascript">
+     		 google.charts.load('current', {'packages':['corechart']});
+	         google.charts.setOnLoadCallback(drawChart);
+
+     		 function drawChart() {
+          var g={{ good }};
+          var a={{ average }};
+          var e={{ excellent }};
+     		 	 var data = google.visualization.arrayToDataTable([
+        		 ['Response', 'Ratio'],
+         		 ['Average',     a   ],
+         		 ['Good',        g   ],
+         		 ['Excellent',   e   ],
+        	 ]);
+
+        	 var options = {
+         	     title: ''
+             };
+
+       		 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+       		 chart.draw(data, options);
+      		}
+    	</script>
+   		 <link rel="stylesheet" href="{% static 'css/overall_Performance.css' %}"> 
+	</head>
+  
+  	<body>
+  		<br><br>  
+  		<center> 
+        	<div  class="Panel_Heading" >
+          		ADMIN PANEL
+        	</div>
+        </center> 
+        <div class="faculty_name"> 
+        		<center>Overall Performance of {{ faculty }} </center>
+        </div>                 
+    	<div class="Pie_Class" style="position: absolute; top: 200px; left: 300px;">
+    	<div id="piechart" style="width: 900px; height: 500px;"></div>
+		</div>
+          <form action="back_home/">
+            <button class="login100-form-btn" style="position: absolute; top: 580px; left: 100px">
+            back
+          </button>
+        </form>
+  
+</html>
